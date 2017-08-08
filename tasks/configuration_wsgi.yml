@@ -1,5 +1,19 @@
 ---
 
+- name: change the user to run httpd as
+  lineinfile:
+    dest: /etc/httpd/conf/httpd.conf
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    backup: yes
+  with_items:
+    - regexp: "User apache"
+      line: "User keystone"
+    - regexp: "Group apache"
+      line: "Group keystone"
+  notify:
+    - Restart webserver
+
 - name: WSGI Tell apache to use the hostname as the servername
   lineinfile:
     dest: '{{ openstack_keystone_webserver_conf_path }}'

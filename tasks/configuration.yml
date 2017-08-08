@@ -28,6 +28,9 @@
     - Restart webserver
   with_items:
     - section: 'DEFAULT'
+      option: 'default_domain_id'
+      value: '21ol9d6ipwxzg3z1jlasv117hkho944g'
+    - section: 'DEFAULT'
       option: 'debug'
       value: '{{ openstack_keystone_verbose }}'
     - section: 'DEFAULT'
